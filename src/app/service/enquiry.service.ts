@@ -38,6 +38,13 @@ export class EnquiryService {
       return this.http.get<Enquiry[]>(getEmpByDateUrl);
 
     }
+
+    downloadEnquiryBetweenDate(startDate:string,endDate: string):any{
+      let getEmpByDateUrl= 'http://localhost:8081/v1/webportal/enquiry/downloadBetweenDate?startDate='+startDate+'&endDate='+endDate;
+      window.open(getEmpByDateUrl);
+    }
+
+    
    
 
 

@@ -4,90 +4,71 @@
 
     <button class="btn" type="button" style="height: 40px" 
         (click)="getEnquiryBetweenDate()" 
-        >get</button>
-        <button class="btn" type="button" style="height: 40px" 
-        (click)="getEmployees()"
-        >AllEnquery</button>
-        <button class="btn" type="button" style="height: 40px" 
-        (click)="downloadEnquiry()"
-        >Download</button>
-    </div>
-       <!--
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        >Get Enquiries</button>
        
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef = "let enquiry "> {{enquiry.id}} </td>
-        </ng-container>
+        <button *ngIf="enquiries.length>0" class="btn" type="button" style="height: 40px" 
+        (click)="downloadEnquiryBetweenDate()"
+        >Download Enquiries</button>
+    </div>
       
+     
+    
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    
+    <div class="mat-elevation-z8" *ngIf="enquiries.length>0">
+      <table mat-table [dataSource]="dataSource" matSort>
+    
+        <!-- ID Column -->
         <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef = "let enquiry "> {{enquiry.fullName}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> FullName </th>
+          <td mat-cell *matCellDef="let row"> {{row.fullName}} </td>
         </ng-container>
     
+        <!-- Progress Column -->
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> email </th>
-          <td mat-cell *matCellDef = "let enquiry "> {{enquiry.email}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}}% </td>
         </ng-container>
- 
+    
+        <!-- Name Column -->
         <ng-container matColumnDef="phoneNo">
-          <th mat-header-cell *matHeaderCellDef> phoneno </th>
-          <td mat-cell *matCellDef = "let enquiry "> {{enquiry.phoneNo}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> PhoneNo </th>
+          <td mat-cell *matCellDef="let row"> {{row.phoneNo}} </td>
         </ng-container>
-  
+    
+        <!-- Fruit Column -->
         <ng-container matColumnDef="organization">
-            <th mat-header-cell *matHeaderCellDef> organization </th>
-            <td mat-cell *matCellDef  = "let enquiry "> {{enquiry.organization}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="subject">
-            <th mat-header-cell *matHeaderCellDef> subject </th>
-            <td mat-cell *matCellDef = "let enquiry "> {{enquiry.subject }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="content">
-            <th mat-header-cell *matHeaderCellDef> content </th>
-            <td mat-cell *matCellDef= "let enquiry "> {{enquiry.content}} </td>
-          </ng-container>
-        
- 
-          <ng-container matColumnDef="createdDate">
-            <th mat-header-cell *matHeaderCellDef> date </th>
-            <td mat-cell *matCellDef = "let enquiry "> {{enquiry.createdDate}} </td>
-          </ng-container>
-      
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Organization </th>
+          <td mat-cell *matCellDef="let row"> {{row.organization}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="subject">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject </th>
+          <td mat-cell *matCellDef="let row"> {{row.subject}} </td>
+        </ng-container>
+    
+        <!-- Fruit Column -->
+        <ng-container matColumnDef="content">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Content </th>
+          <td mat-cell *matCellDef="let row"> {{row.content}} </td>
+        </ng-container>
+    
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
       </table>
-    -->
-    <table class = "table table-dark table-striped">
-        <thead>
-            <tr>
-              <th class="per"> Id</th>
-                <th class="per"> Name</th>
-                <th class="per"> Email</th>
-                <th class="per"> phoneno</th>
-                <th class="per"> organization</th>
-                <th class="per"> subject</th>
-                <th class="per"> content</th>
-                <th class="per"> Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor = "let enquiry of enquiries" >
-                <td class="per"> {{enquiry.id}}</td>
-                <td class="per"> {{ enquiry.fullName }} </td>
-                <td class="per"> {{ enquiry.email }} </td>
-                <td class="per"> {{ enquiry.phoneNo }} </td>
-                <td class="per"> {{ enquiry.organization }} </td>
-                <td class="per"> {{ enquiry.subject }} </td>
-                <td class="per"> {{ enquiry.content }} </td>
-                <td class="per"> {{ enquiry.createdDate | date:'dd-MM-yyyy'}}</td>
-        
-            </tr>
-        </tbody>
-    </table> 
-      
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+    
+    
       
       
       

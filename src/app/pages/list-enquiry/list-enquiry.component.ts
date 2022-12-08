@@ -1,22 +1,35 @@
 import { CdkTableDataSourceInput } from '@angular/cdk/table';
-import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Enquiry } from 'src/app/model/enquiry';
 import { EnquiryService } from 'src/app/service/enquiry.service';
+import {AfterViewInit, Component,Input, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import { DatePipe } from '@angular/common'
+
+
+
+
+
+
 @Component({
   selector: 'app-list-enquiry',
   templateUrl: './list-enquiry.component.html',
   styleUrls: ['./list-enquiry.component.scss']
 })
 
-
 export class ListEnquiryComponent implements OnInit {
-  enquiries: Enquiry[] = [];
-  displayedColumns: string[] = ['id', 'fullName', 'email', 'phoneNo','organization','subject','content','createdDate'];
-  //public dataSource = new MatTableDataSource<Enquiry>();
+  displayedColumns: string[] = [ 'fullName', 'email', 'phoneNo', 'organization', 'subject','content'];
+  dataSource!: MatTableDataSource<Enquiry>;
 
-  dataSource = this.enquiries; 
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
+
+  enquiries: Enquiry[] = [];
+ 
   startDate : string;
   endDate : string;
 
@@ -25,38 +38,48 @@ export class ListEnquiryComponent implements OnInit {
     private router: Router) { 
     this.startDate='';
     this.endDate='';
+      
     }
 
   ngOnInit(): void {
-  //  this.getEmployees();
-  //this.getEnquiryBetweenDate();
-  }/*
-  getStudentsInformation(){
-    this.EnquiryService.getAllEnquiry()
-      .subscribe((res)=>{
-        console.log(res);
-        this.dataSource.data = res;
-      })
-  }*/
+  
+  }
 
    getEmployees(){
     this.EnquiryService.getAllEnquiry().subscribe(data => {
       this.enquiries = data;
     });
   }
+   
+  
   getEnquiryBetweenDate(){
-    console.log("=============================",this.startDate,this.endDate);
-    this.EnquiryService.getEnquiryBetweenDate(this.startDate,this.endDate).subscribe(data => {
+    
+    this.EnquiryService.getEnquiryBetweenDate(this.startDate.split("-").reverse().join("-")
+    ,this.endDate.split("-").reverse().join("-")).subscribe(data => {
       this.enquiries = data;
-      console.log("=============================",this.startDate,this.endDate);
+     
+      this.dataSource = new MatTableDataSource( this.enquiries);
+      
     });
   
   }
- downloadEnquiry(){
-    this.EnquiryService.getByDownload().subscribe(data => {
-      this.enquiries = data;
-   });
+ downloadEnquiryBetweenDate(){
+    this.EnquiryService.downloadEnquiryBetweenDate(this.startDate.split("-").reverse().join("-")
+    ,this.endDate.split("-").reverse().join("-"))
+}
+ngAfterViewInit() {
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
 
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
+  }
 }
 
 }
+
