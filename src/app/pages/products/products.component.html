@@ -5,7 +5,7 @@
 <mat-card class="product-card" *ngFor="let prod of productionProds">
   <mat-card-header>
     <mat-card-title [style.font-family]="prod.font ? prod.font : 'inherit'">
-      {{prod.name}}
+     <p> {{prod.name}}</p>
     </mat-card-title>
     <!-- <mat-card-subtitle>
       <mat-chip-list>
@@ -16,7 +16,7 @@
     </mat-card-subtitle> -->
   </mat-card-header>
   <mat-card-content>
-    {{prod.desc}}
+   <p> {{prod.desc}}</p>
   </mat-card-content>
   <mat-card-actions>
     <a mat-button *ngIf="prod.repoURL" [href]="prod.repoURL" target="_blank">
@@ -31,11 +31,11 @@
 <mat-card class="product-card" *ngFor="let prod of devProds">
   <mat-card-header>
     <mat-card-title [style.font-family]="prod.font ? prod.font : 'inherit'">
-      {{prod.name}}
+   <p>   {{prod.name}} </p>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    {{prod.desc}}
+   <p > {{prod.desc}} </p>
   </mat-card-content>
   <mat-card-actions>
     <a mat-button *ngIf="prod.repoURL" [href]="prod.repoURL" target="_blank">

@@ -10,9 +10,10 @@
       <a mat-list-item [routerLink]="['/']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">home</a>
       <a mat-list-item [routerLink]="['products']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">products</a>
       <a mat-list-item [routerLink]="['about']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">about</a>
+      <a mat-list-item [routerLink]="['contactUs']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">ContactUs</a>
     </mat-nav-list>
     <mat-toolbar class="footer" color="primary">
-      &copy; {{currentYear}} Techlmaginia
+     <footer> &copy; {{currentYear}} Techlmaginia</footer>
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -23,14 +24,21 @@
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon" >menu</mat-icon>
       </button>
       <span *ngIf="isHandset$ | async" style="height:25px; margin-left: 8px;">
         <img src="../assets/Logo.png" style="height: 200px">
       </span>
     </mat-toolbar>
+  
     <div class="app-frame">
+      <div class="btnn" style="height:40px;  width:100%; background-color:  black;">
+        <button class="btn" type="button" style="height: 40px" 
+        [routerLink]="['listEnquiry']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route"
+        >login</button>
+        </div>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

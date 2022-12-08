@@ -16,13 +16,24 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ProductsComponent } from './pages/products/products.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ImageSliderComponent } from "./image-slider/image-slider.component";
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ListEnquiryComponent } from './pages/list-enquiry/list-enquiry.component';
+import { MatTableModule } from '@angular/material/table';
+
+
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         ProductsComponent,
-        AboutComponent,     
+        AboutComponent,
+        ContactUsComponent,
+        ListEnquiryComponent,
+    
+           
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -38,7 +49,10 @@ import { ImageSliderComponent } from "./image-slider/image-slider.component";
         MatListModule,
         MatCardModule,
         MatChipsModule,
-        ImageSliderComponent
+        ImageSliderComponent,
+        HttpClientModule,
+        FormsModule,
+        MatTableModule,
     ]
 })
 export class AppModule { }
