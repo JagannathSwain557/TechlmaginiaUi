@@ -13,7 +13,7 @@
       <a mat-list-item [routerLink]="['contactUs']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">ContactUs</a>
     </mat-nav-list>
     <mat-toolbar class="footer" color="primary">
-     <footer> &copy; {{currentYear}} Techlmaginia</footer>
+     &copy; {{currentYear}} Techlmaginia
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -32,13 +32,18 @@
     </mat-toolbar>
   
     <div class="app-frame">
-      <div class="btnn" style="height:40px;  width:100%; background-color:  black;">
-        <button class="btn" type="button" style="height: 40px" 
-        [routerLink]="['listEnquiry']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route"
-        >login</button>
+      <div mat-button class="btnn" style="height:30px;  width:100%; background-color:  black;">
+
+         
+        <button class="btn" type="button" style="height: 30px" 
+     (click)="openDialog()" 
+        >SignIn</button>
+    
         </div>
+        
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 

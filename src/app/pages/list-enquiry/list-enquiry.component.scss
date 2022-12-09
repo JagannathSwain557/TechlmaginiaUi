@@ -2,14 +2,11 @@ table table-striped{
     align-items: center;
 }
 .btn{
-    margin: 0px 9px;
-    background-color: gray;
     color: white;
-    padding: 4px 14px;
-    border: 2px solid cyan;
-    border-radius: 10px;
-    font-size: 20px;
-    cursor: pointer;
+    font-size: 14px;
+    background-color: cornflowerblue;
+    border-radius: 0px;
+   
     }
 .btn:hover{
     background-color: green;
@@ -17,18 +14,18 @@ table table-striped{
     table {
         width: 100%;
       }
-      
-
-      table {
-        width: 100%;
-      }
-      
+  
       .mat-mdc-form-field {
         font-size: 14px;
         width: 100%;
       }
       
       td, th {
-        width: 25%;
+        width: 15%;
       }
+      .btnn{
+        text-align: left;
+  
+      }
+    
       

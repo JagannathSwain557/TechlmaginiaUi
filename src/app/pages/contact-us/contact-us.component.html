@@ -1,42 +1,23 @@
 <div class="col-md-6 offset-md-3">
-    <form (ngSubmit) = "onSubmit()">
-                <div class="form-group">
-                    <label> Full Name</label>
-                    <input type="text" class ="form-control" id = "lastName"
-                        [(ngModel)] = "Enquiry.fullName" placeholder="enter your fullName">
-                </div>
-            
-                <div class="form-group">
-                    <label> Email Id</label>
-                    <input type="text" class ="form-control" id = "emailId"
-                        [(ngModel)] = "Enquiry.email" placeholder="enter your email">
-                </div>
-                        <div class="form-group">
-                            <label> Phone no</label>
-                            <input type="text" class ="form-control" id = "firstName"
-                                [(ngModel)] = "Enquiry.phoneNo" placeholder="enter your phoneno">
-                        </div>
-                    
-                        <div class="form-group">
-                            <label> Oraganization</label>
-                            <input type="text" class ="form-control" id = "lastName"
-                                [(ngModel)] = "Enquiry.organization" placeholder="enter your oraganization">
-                        </div>
-                    
-                        <div class="form-group">
-                            <label> Subject</label>
-                            <input type="text" class ="form-control" id = "emailId"
-                                [(ngModel)] = "Enquiry.subject" placeholder="enter your subject">
-                        </div>
-                        <div class="form-group">
-                            <label> Content</label>
-                            <input type="text" class ="form-control" id = "lastName"
-                                [(ngModel)] = "Enquiry.content" placeholder="enter your content">
-                        </div>
-                        <tr>
-                        <td><button type="reset" class="btn btn-success">Reset</button></td>
-                      <td>  <button class = "btn btn-success" type ="submit">Submit</button></td>
-                            </tr>
-    
+    <form (ngSubmit) = "onSubmit()" [formGroup]="register" class="con">
+        <br>
+            <input type="text" class="form-controler" placeholder="fullName" formControlName="uname">
+            <span *ngIf="vname && vname.invalid" style="color: red;">enter a valid data</span>
+            <br>
+            <input type="text" class="form-controler" placeholder="organization" formControlName="email">
+            <span *ngIf="vemail && vemail.invalid" style="color: red;">enter a valid data</span>
+            <br>
+            <input type="text" class="form-controler" placeholder="email"formControlName="organization">
+            <span *ngIf="vorganization && vorganization.invalid" style="color: red;">enter a valid data</span> 
+            <br>
+            <input type="text" class="form-controler" placeholder="subject" formControlName="subject">
+            <span *ngIf="vsubject && vsubject.invalid" style="color: red;">enter a valid data</span>
+            <br>
+            <input type="text" class="form-controler" placeholder="content" formControlName="content">
+            <span *ngIf="vcontent && vcontent.invalid" style="color: red;">enter a valid data</span>
+            <tr>
+                <td><button type="reset" class="btn">Reset</button></td>
+              <td>  <button class = "btn" type ="submit">Submit</button></td>
+                    </tr>
     </form>
     </div> 

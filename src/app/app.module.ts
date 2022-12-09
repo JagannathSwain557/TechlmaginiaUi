@@ -24,8 +24,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { SignInDialogComponent } from './signIn-dailog/signIn-dailog.component';
+import { ErrorDailogComponent } from './error-dailog/error-dailog.component';
+import {  ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -35,7 +37,11 @@ import { MatInputModule } from '@angular/material/input';
         AboutComponent,
         ContactUsComponent,
         ListEnquiryComponent,
-    
+        SignInDialogComponent,
+        ErrorDailogComponent,
+     
+       
+       
            
     ],
     providers: [],
@@ -56,10 +62,11 @@ import { MatInputModule } from '@angular/material/input';
         HttpClientModule,
         FormsModule,
         MatTableModule,
-        MatPaginatorModule ,
-        MatFormFieldModule ,
+        MatPaginatorModule,
+        MatFormFieldModule,
         MatInputModule,
-    ],
-    
+        MatDialogModule,
+        ReactiveFormsModule,
+    ]
 })
 export class AppModule { }

@@ -22,8 +22,14 @@ mat-toolbar.footer {
     font-size: 12px;
     font-weight: 300;
 }
-footer {
-text-align: end;
+.footer {
+
+position: fixed;
+left: 0;
+bottom: 0;
+width: 13%;
+
+
 }
 .active-route,
 a.mat-list-item:hover {
@@ -36,11 +42,12 @@ mat-sidenav-content {
     color: white;
 }
 .btn{
+  color: white;
+  background-color: cornflowerblue;
+  border-radius: 0px;
   background-color: gray;
-  color: black;
   padding: 4px 14px;
-  font-size: 20px;
-  margin-bottom:20px ;
+  font-size: 14px;
   cursor: pointer;
   }
 .btn:hover{
