@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpParams, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient,HttpParams, HttpClientModule, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Enquiry } from '../model/enquiry';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,36 +11,54 @@ import { ErrorDailogComponent } from '../error-dailog/error-dailog.component';
 export class EnquiryService {
   [x: string]: any;
  //addEmpURL : string;
- getEnqURL : string;
- getEmpDownloadUrl : string;
-
+ 
   constructor(private http : HttpClient) {
 
-    //this.addEmpURL = 'http://localhost:8081/v1/webportal/enquiry/create';
-    this.getEnqURL = 'http://localhost:8081/v1/webportal/enquiry/getall';
     
-  this.getEmpDownloadUrl= 'http://localhost:8081/v1/webportal/enquiry/download'
+   
   }
   baseURL="http://localhost:8081/v1/webportal/enquiry";
+ // baseURL="http://localhost:8080/v1/webportal/enquiry";
+
     createEnquiry(Enquiry: Enquiry) {
-      return this.http.post(this.baseURL + "/create", Enquiry)
+      let headers= new HttpHeaders({
+     //   'Content-Type':  'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST',
+       // 'Access-Control-Allow-Origin': '*'
+       'Access-Control-Allow-Origin': 'http://localhost:4200',
+        'Access-Control-Allow-Credentials': 'true'
+      })
+
+
+      return this.http.post(this.baseURL + "/create", Enquiry,{headers: headers})
       .pipe(retry(1), catchError(this.handleError));
     }
     getEnquiryBetweenDate(startDate:string,endDate: string):Observable<Enquiry[]>{
-      let getEmpByDateUrl= 'http://localhost:8081/v1/webportal/enquiry/betweenDates?startDate='+startDate+'&endDate='+endDate;
-      return this.http.get<Enquiry[]>(getEmpByDateUrl)
+     let headers= new HttpHeaders({
+      //  'Content-Type':  'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET',
+       // 'Access-Control-Allow-Origin': '*',
+       'Access-Control-Allow-Origin': 'http://localhost:4200',
+        'Access-Control-Allow-Credentials': 'true'
+      })
+
+
+      let getEmpByDateUrl= this.baseURL +'betweenDates?startDate='+startDate+'&endDate='+endDate;
+      return this.http.get<Enquiry[]>(getEmpByDateUrl,{headers: headers})
       .pipe(retry(1), catchError(this.handleError));
 
     }
 
     downloadEnquiryBetweenDate(startDate:string,endDate: string):any{
-      let getEmpByDateUrl= 'http://localhost:8081/v1/webportal/enquiry/downloadBetweenDate?startDate='+startDate+'&endDate='+endDate;
+      let getEmpByDateUrl= this.baseURL +'/downloadBetweenDate?startDate='+startDate+'&endDate='+endDate;
       window.open(getEmpByDateUrl);
   
     }
     handleError(error:any) {
       let errorMessage = '';
-      console.log('===============================error happend========')
+     // console.log('===============================error happend========')
   
       if (error.error instanceof ErrorEvent) {
         // client-side error
