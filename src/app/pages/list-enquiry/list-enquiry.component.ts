@@ -43,33 +43,43 @@ export class ListEnquiryComponent implements OnInit {
   ngOnInit(): void {
   
   }
-
- 
-   
   
   getEnquiryBetweenDate(){
     
     this.EnquiryService.getEnquiryBetweenDate(this.startDate.split("-").reverse().join("-")
     ,this.endDate.split("-").reverse().join("-")).subscribe(data => {
       this.enquiries = data;
+      
      
       this.dataSource = new MatTableDataSource( this.enquiries);
-    });
-    if(this.enquiries.length=0) {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      if(this.enquiries.length==0){
       const dialogRef = this.dialog.open(ErrorDailogComponent, {
-        data: {message: 'No record found'},
-      });
+        data: {message: 'No record found',alertType: 'info'},
+    }); 
+    
+  }
+    },
+    error => {
+     
+      const dialogRef = this.dialog.open(ErrorDailogComponent, {
+        data: {message: 'Error Occured',alertType: 'error'},
+    });
+    
     }
-  
-  
+    )
+
+    
+
   }
  downloadEnquiryBetweenDate(){
     this.EnquiryService.downloadEnquiryBetweenDate(this.startDate.split("-").reverse().join("-")
     ,this.endDate.split("-").reverse().join("-"))
+    
 }
 ngAfterViewInit() {
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
+ 
 }
 
 applyFilter(event: Event) {

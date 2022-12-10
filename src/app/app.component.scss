@@ -13,6 +13,9 @@
   top: 0;
   z-index: 1;
 }
+.main{
+  text-align: right;
+}
 
 .mat-list-item {
     color: #ffffff;
@@ -23,7 +26,8 @@ mat-toolbar.footer {
     font-weight: 300;
 }
 .footer {
-
+color: white;
+background: transparent;
 position: fixed;
 left: 0;
 bottom: 0;

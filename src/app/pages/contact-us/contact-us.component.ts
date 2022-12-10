@@ -17,39 +17,48 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class ContactUsComponent implements OnInit {
 
 register =new FormGroup({
-  uname: new FormControl("",Validators.required),
-  email: new FormControl("",Validators.required),
+  uname: new FormControl("",[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z\\s]+$')]),
+  email: new FormControl("",[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+  number: new FormControl("",[ Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
   organization: new FormControl("",Validators.required),
   subject: new FormControl("",Validators.required),
   content: new FormControl("",Validators.required)
 });
 
   Enquiry: Enquiry = new Enquiry();
-
+  showAlert = false;
   constructor(private empService : EnquiryService,private router: Router,public dialog: MatDialog) { 
  
   }
   ngOnInit(): void {
   }
-  
-  
-saveEmployee(){
-  this.empService.createEmployee(this.Enquiry).subscribe( data =>{
-    //if(this.enquiries.length=0) {
+  closeAlert() {
+    this.showAlert = false;
+  }
+  saveStudent() {
+    this.empService.createEnquiry(this.Enquiry).subscribe((response) => {
+      console.log(response);
+      this.showAlert = true;
+      this.Enquiry = new Enquiry();
       const dialogRef = this.dialog.open(ErrorDailogComponent, {
-        data: {message: 'Saved successfully'},
-      });
+        data: {message: 'Saved successfully',alertType: 'info'},
+    });
     
   },
-  error => console.log(error));
-}
-goToEmployeeList(){
-  this.router.navigate(['/create']);
+
+    error => {
+     
+      const dialogRef = this.dialog.open(ErrorDailogComponent, {
+        data: {message: 'Error Occured',alertType: 'error'},
+    });
+    
+    }
+    )
 }
 onSubmit(){
-  //console.log(this.Enquiry);
-  //this.saveEmployee();
-  console.log(this.register.value)
+  console.log(this.Enquiry);
+  this.saveStudent();
+ console.log(this.register.value)
 }
 
 get vname(){
@@ -57,6 +66,9 @@ get vname(){
 }
 get vemail(){
   return this.register.get("email");
+}
+get vnumber(){
+  return this.register.get("number");
 }
 get vorganization(){
   return this.register.get("organization");
@@ -67,5 +79,6 @@ get vsubject(){
 get vcontent(){
   return this.register.get("content");
 }
+
 
 }

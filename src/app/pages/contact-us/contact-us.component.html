@@ -1,23 +1,54 @@
-<div class="col-md-6 offset-md-3">
-    <form (ngSubmit) = "onSubmit()" [formGroup]="register" class="con">
-        <br>
-            <input type="text" class="form-controler" placeholder="fullName" formControlName="uname">
-            <span *ngIf="vname && vname.invalid" style="color: red;">enter a valid data</span>
-            <br>
-            <input type="text" class="form-controler" placeholder="organization" formControlName="email">
-            <span *ngIf="vemail && vemail.invalid" style="color: red;">enter a valid data</span>
-            <br>
-            <input type="text" class="form-controler" placeholder="email"formControlName="organization">
-            <span *ngIf="vorganization && vorganization.invalid" style="color: red;">enter a valid data</span> 
-            <br>
-            <input type="text" class="form-controler" placeholder="subject" formControlName="subject">
-            <span *ngIf="vsubject && vsubject.invalid" style="color: red;">enter a valid data</span>
-            <br>
-            <input type="text" class="form-controler" placeholder="content" formControlName="content">
-            <span *ngIf="vcontent && vcontent.invalid" style="color: red;">enter a valid data</span>
-            <tr>
-                <td><button type="reset" class="btn">Reset</button></td>
-              <td>  <button class = "btn" type ="submit">Submit</button></td>
-                    </tr>
-    </form>
-    </div> 
+<div class="container-fluid">
+
+    <div class="card" style="width: 50%;margin: 5px auto;">
+        <div class="card-header">
+            Add New Student
+        </div>
+        <div class="card-body">
+            <form (ngSubmit) = "onSubmit()" [formGroup]="register" >
+                <div class="form-group">
+                    <label for="name">FullName</label>
+                    <input [(ngModel)]="Enquiry.fullName" id="name" placeholder="fullName" name="name" class="form-control" formControlName="uname" type="text">
+                    <span *ngIf="vname && vname.invalid" style="color: red;">enter a valid Name 1st Must be Capital</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input [(ngModel)]="Enquiry.email" id="email" placeholder="valid email" name="email" class="form-control" formControlName="email" type="text">
+                    <span *ngIf="vemail && vemail.invalid" style="color: red;">enter a valid email</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="PhoneNo">PhoneNo</label>
+                    <input [(ngModel)]="Enquiry.phoneNo" id="PhoneNo" placeholder="phoneNo" name="phone" class="form-control" formControlName="number" type="text">
+                    <span *ngIf="vnumber && vnumber.invalid" style="color: red;">enter a 10 digite mob no</span> 
+                   
+                </div>
+                <div class="form-group">
+                    <label for="organization">organization</label>
+                    <input [(ngModel)]="Enquiry.organization" name="organization" id="address" placeholder="organization" class="form-control"  formControlName="organization"type="text">
+                    <span *ngIf="vorganization && vorganization.invalid" style="color: red;">enter a valid data</span> 
+                </div>
+                <div class="form-group">
+                    <label for="subject">subject</label>
+                    <input [(ngModel)]="Enquiry.subject" name="subject" id="address" placeholder="subject" class="form-control" formControlName="subject" type="text">
+                    <span *ngIf="vsubject && vsubject.invalid" style="color: red;">enter a valid data</span>
+                </div>
+                <div class="form-group">
+                    <label for="content">content</label>
+                    <input [(ngModel)]="Enquiry.content" name="content" id="address" placeholder="content" class="form-control" formControlName="content" type="text">
+                    <span *ngIf="vcontent && vcontent.invalid" style="color: red;">enter a valid address</span>
+                </div>
+
+                <button class="btn btn-primary" (click)="saveStudent()">Save</button>
+            </form>
+        </div>
+        <div class="card-footer" *ngIf="showAlert">
+            <div class="alert alert-success">
+                <button (click)="closeAlert()" class="close">
+                    &times;
+                </button>
+                <strong>Success</strong>
+            </div>
+        </div>
+    </div>
+</div>

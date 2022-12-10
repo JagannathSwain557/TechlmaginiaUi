@@ -17,7 +17,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8" *ngIf="enquiries.length>0">
+  <div class="mat-elevation-z8" *ngIf="enquiries.length!=0">
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- ID Column -->

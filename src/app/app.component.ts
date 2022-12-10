@@ -42,8 +42,8 @@ export class AppComponent {
     this.currentYear = new Date().getFullYear();
   }
 
-  handleDrawerClick(drawer : MatSidenav) {
-    if (drawer.mode == 'over') drawer.close();
+ handleDrawerClick(drawer : MatSidenav) {
+  if (drawer.mode == 'over') drawer.close();
   }
 
 }
