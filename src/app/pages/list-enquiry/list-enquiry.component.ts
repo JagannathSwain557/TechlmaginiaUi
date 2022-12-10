@@ -41,6 +41,8 @@ export class ListEnquiryComponent implements OnInit {
     }
 
   ngOnInit(): void {
+   
+
   
   }
   

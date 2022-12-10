@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/service/auth.service';
+import { EnquiryService } from 'src/app/service/enquiry.service';
 
 @Component({
   selector: 'app-about',
@@ -9,11 +11,12 @@ import { Title } from '@angular/platform-browser';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private title : Title) { 
+  constructor(private title : Title,private empService : EnquiryService, private authService:AuthService, ) { 
     this.title.setTitle('arbitrary - about');
   }
 
   ngOnInit(): void {
+    this.authService.isAuthenticated=false;
   }
 
 }

@@ -5,6 +5,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { ListEnquiryComponent } from './pages/list-enquiry/list-enquiry.component';
+import { AuthGuard } from './guards/auth-guard';
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contactUs', component: ContactUsComponent},
-  { path: 'listEnquiry',component: ListEnquiryComponent},
+  { path: 'listEnquiry',component: ListEnquiryComponent,canActivate: [AuthGuard],},
 
 ];
 

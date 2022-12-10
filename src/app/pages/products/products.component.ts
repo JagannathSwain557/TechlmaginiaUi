@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/service/auth.service';
+import { EnquiryService } from 'src/app/service/enquiry.service';
 
 interface Product {
   name : string,    // product name
@@ -21,11 +23,12 @@ export class ProductsComponent implements OnInit {
   productionProds: Product[] = [];
   devProds: Product[] = []; 
 
-  constructor(private title : Title) { 
+  constructor(private title : Title,private empService : EnquiryService, private authService:AuthService, ) { 
     this.title.setTitle('arbitrary - products');
   }
 
   ngOnInit(): void {
+    this.authService.isAuthenticated=false
     this.productionProds = [
       {
         name: 'autohome',

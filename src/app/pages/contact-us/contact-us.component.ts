@@ -7,6 +7,7 @@ import { ErrorDailogComponent } from 'src/app/error-dailog/error-dailog.componen
 import { Enquiry } from 'src/app/model/enquiry';
 import { EnquiryService } from 'src/app/service/enquiry.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -27,10 +28,12 @@ register =new FormGroup({
 
   Enquiry: Enquiry = new Enquiry();
   showAlert = false;
-  constructor(private empService : EnquiryService,private router: Router,public dialog: MatDialog) { 
+  constructor(private empService : EnquiryService,private router: Router,public dialog: MatDialog,
+    private authService:AuthService, ) { 
  
   }
   ngOnInit(): void {
+    this.authService.isAuthenticated=false;
   }
   closeAlert() {
     this.showAlert = false;
