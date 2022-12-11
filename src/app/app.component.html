@@ -10,7 +10,7 @@
       <a mat-list-item [routerLink]="['/']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">home</a>
       <a mat-list-item [routerLink]="['products']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">products</a>
       <a mat-list-item [routerLink]="['about']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">about</a>
-      <a mat-list-item [routerLink]="['contactUs']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">ContactUs</a>
+      <a mat-list-item [routerLink]="['contactUs']" (click)="handleDrawerClick(drawer)" routerLinkActive="active-route">contact us</a>
     </mat-nav-list>
     <mat-toolbar class="footer" >
      &copy; {{currentYear}} Techlmaginia
@@ -31,14 +31,14 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon" >menu</mat-icon>
       </button>
-      <span *ngIf="isHandset$ | async" style="height:25px; margin-left: 8px;">
+      <!--<span *ngIf="isHandset$ | async" style="height:25px; margin-left: 8px;">
         <img src="../assets/Logo.png" style="height: 200px">
-      </span>
+      </span>-->
     </mat-toolbar>
   
     <div class="app-frame">
         
-      <router-outlet></router-outlet>
+      <router-outlet style="margin-left: 5px;"></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
