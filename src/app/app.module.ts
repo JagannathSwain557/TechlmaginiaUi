@@ -28,6 +28,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SignInDialogComponent } from './signIn-dailog/signIn-dailog.component';
 import { ErrorDailogComponent } from './error-dailog/error-dailog.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { BaseComponent } from './pages/base/base.component';
+import { LoginOwnerComponent } from './pages/auth/login-owner/login-owner.component';
+import { SignUpComponent } from './pages/auth/sign-up/sign-up.component';
+import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+
 
 @NgModule({
     declarations: [
@@ -39,7 +46,12 @@ import {  ReactiveFormsModule } from '@angular/forms';
         ListEnquiryComponent,
         SignInDialogComponent,
         ErrorDailogComponent,
-     
+       LoginComponent,
+       BaseComponent,
+       LoginOwnerComponent,
+       SignUpComponent ,
+       DashboardComponent,
+       ProfileComponent
        
        
            
@@ -67,6 +79,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
         MatInputModule,
         MatDialogModule,
         ReactiveFormsModule,
+   
     ]
 })
 export class AppModule { }
