@@ -36,6 +36,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.compon
 import { ProfileComponent } from './pages/profile/profile.component';
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -79,7 +80,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
         MatInputModule,
         MatDialogModule,
         ReactiveFormsModule,
-   
+       
     ]
 })
+
 export class AppModule { }
